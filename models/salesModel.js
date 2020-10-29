@@ -12,19 +12,9 @@ const getAllSales = async () => {
   return conn.collection('sales').find().toArray();
 };
 
-// const getAllSales = () => {
-//   const sales = connection().then((conn) => conn.collection('sales').find().toArray());
-//   return sales;
-// };
-
-// const getSaleById = async (id) => {
-//   const conn = await connection();
-//   return conn.collection('sales').findOne(ObjectId(id));
-// };
-
-const getSaleById = (id) => {
-  const sale = connection().then((conn) => conn.collection('sales').findOne(ObjectId(id)));
-  return sale;
+const getSaleById = async (id) => {
+  const conn = await connection();
+  return conn.collection('sales').findOne(ObjectId(id));
 };
 
 const updateSale = async (id, itensSold) => {
@@ -35,14 +25,10 @@ const updateSale = async (id, itensSold) => {
   return product;
 };
 
-// const deleteSale = async (id) => {
-//   const conn = await connection();
-//   await conn.collection('sales').deleteOne({ _id: ObjectId(id) });
-//   return true;
-// };
-
-const deleteSale = (id) => {
-  connection().then((conn) => conn.collection('sales').deleteOne({ _id: ObjectId(id) }));
+const deleteSale = async (id) => {
+  const conn = await connection();
+  await conn.collection('sales').deleteOne({ _id: ObjectId(id) });
+  return true;
 };
 
 module.exports = {

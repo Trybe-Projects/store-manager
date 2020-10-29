@@ -28,17 +28,6 @@ router.get('/', async (_req, res) => {
   }
 });
 
-// router.get('/', (_req, res) => {
-//   salesModel
-//     .getAllSales()
-//     .then((sales) => {
-//       res.status(200).json({ sales });
-//     })
-//     .catch((_err) => {
-//       res.status(404).json(returnResponse('not_found', 'Sale not found'));
-//     });
-// });
-
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -51,21 +40,6 @@ router.get('/:id', async (req, res) => {
     res.status(404).json(returnResponse('not_found', 'Sale not found'));
   }
 });
-
-// router.get('/:id', (req, res) => {
-//   const { id } = req.params;
-//   salesModel
-//     .getSaleById(id)
-//     .then((sale) => {
-//       if (!sale) {
-//         return res.status(404).json(returnResponse('not_found', 'Sale not found'));
-//       }
-//       res.status(200).json(sale);
-//     })
-//     .catch((_err) => {
-//       res.status(404).json(returnResponse('not_found', 'Sale not found'));
-//     });
-// });
 
 router.put('/:id', saleValidation.validateQuantity, async (req, res) => {
   try {
